@@ -51,7 +51,7 @@ public class Counter {
                 ex) name:my-thread, count:1
              */
             String name = Thread.currentThread().getName();
-            System.out.println("name:%s, count:%d".formatted(name, count));
+            log.debug("name:%s, count:%d".formatted(name, count));
         }while (count<countMaxSize);
     }
 }
