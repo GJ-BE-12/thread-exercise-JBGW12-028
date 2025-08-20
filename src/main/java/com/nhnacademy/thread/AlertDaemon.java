@@ -1,7 +1,9 @@
 package com.nhnacademy.thread;
 
-import javax.sound.midi.SysexMessage;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 public class AlertDaemon extends Thread {
 
     public AlertDaemon() {
@@ -16,7 +18,7 @@ public class AlertDaemon extends Thread {
         Runtime.getRuntime().addShutdownHook(
                 new Thread(() -> {
                     //TODO#3 AlertDaemon Thread가 종료 시점에 적절한 메시지를 출력합니다.
-                    System.out.println("AlertDaemon Thread 종료");
+                    log.debug("AlertDaemon Thread 종료");
                 })
         );
     }
@@ -32,7 +34,7 @@ public class AlertDaemon extends Thread {
                 throw new RuntimeException();
             }
             i++;
-            System.out.println("Alert Daemon message - name:%s, count:%d".formatted(getName(), i));
+            log.debug("Alert Daemon message - name:%s, count:%d".formatted(getName(), i));
         }
     }
 
