@@ -52,7 +52,7 @@ public class CounterThread extends Thread{
                 throw new RuntimeException(e);
             }
             count++;
-            System.out.println("thread name:%s, count:%d".formatted(this.getName(), count));
+           log.debug("thread name:%s, count:%d".formatted(this.getName(), count));
         }while (count<countMaxSize);
     }
 }
