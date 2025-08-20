@@ -1,12 +1,14 @@
 package com.nhnacademy.thread;
 
+import javax.sound.midi.SysexMessage;
+
 public class AlertDaemon extends Thread {
 
     public AlertDaemon() {
         //TODO#1 - setDaemon() 메서드를 이용해서 daemon thread로 설정
-
+        setDaemon(true);
         //TODO#2 - Thread 이름을 alert-daemon으로 설정
-
+        setName("alert-daemon");
 
         // ShutdownHook: JVM이 종료되기 직전에 실행되는 Thread
         // 프로그램의 정상/비정상 종료 시 필요한 리소스 정리나 로그 기록 등을 처리하며,
@@ -14,6 +16,7 @@ public class AlertDaemon extends Thread {
         Runtime.getRuntime().addShutdownHook(
                 new Thread(() -> {
                     //TODO#3 AlertDaemon Thread가 종료 시점에 적절한 메시지를 출력합니다.
+                    System.out.println("AlertDaemon Thread 종료");
                 })
         );
     }
@@ -21,6 +24,16 @@ public class AlertDaemon extends Thread {
     @Override
     public void run() {
         //TODO#4 1초에 한 번씩 Alert Daemon message를 출력 합니다.
+        int i = 0;
+        while(true) {
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                throw new RuntimeException();
+            }
+            i++;
+            System.out.println("Alert Daemon message - name:%s, count:%d".formatted(getName(), i));
+        }
     }
 
 }
