@@ -26,10 +26,8 @@ public class SharedCounter {
     }
 
     //TODO#1-2 method 단위 lock을 걸고, count 를 반환 합니다.
-    public long getCount(){
-        synchronized (this){
-            return count;
-        }
+    public synchronized long getCount(){
+        return count;
     }
 
     public long increaseAndGet(){
